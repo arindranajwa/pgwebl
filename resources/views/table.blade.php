@@ -1,0 +1,56 @@
+@extends('layout.tamplate')
+
+@section('content')
+<div>
+    
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>NIM</th>
+            <th>Kelas</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Najwa</td>
+            <td>515591</td>
+            <td>A</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Jungkook</td>
+            <td>515592</td>
+            <td>A</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Mingyu</td>
+            <td>515593</td>
+            <td>A</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Woonu</td>
+            <td>515594</td>
+            <td>A</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Yoongi</td>
+            <td>515595</td>
+            <td>A</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Jeonghan</td>
+            <td>515596</td>
+            <td>A</td>
+        </tr>
+    </tbody>
+</table>
+@endsection
