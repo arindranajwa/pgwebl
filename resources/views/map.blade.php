@@ -93,8 +93,7 @@
     </div>
 
     <!-- Modal Create Polygon -->
-    <div class="modal fade" id="CreatePolygonModal" tabindex="-1"
-    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="CreatePolygonModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -118,8 +117,7 @@
 
                         <div class="mb-3">
                             <label for="geom_polygon" class="form-label">Geometry</label>
-                            <textarea class="form-control" id="geom_polygon"
-                            name="geom_polygon" rows="3"></textarea>
+                            <textarea class="form-control" id="geom_polygon" name="geom_polygon" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -214,5 +212,85 @@
 
             drawnItems.addLayer(layer);
         });
+
+        /* GeoJSON Point */
+        var point = L.geoJson(null, {
+            onEachFeature: function(feature, layer) {
+                var popupContent = "Nama: " + feature.properties.name + "<br>" +
+                    "Deskripsi: " + feature.properties.description + "<br>" +
+                    "Dibuat: " + feature.properties.created_at;
+                layer.on({
+                    click: function(e) {
+                        point.bindPopup(popupContent);
+                    },
+                    mouseover: function(e) {
+                        point.bindTooltip(feature.properties.kab_kota);
+                    },
+                });
+            },
+        });
+        $.getJSON("{{route('api.points')}}", function(data) {
+            point.addData(data);
+            map.addLayer(point);
+        });
+
+
+        /* GeoJSON Polylines */
+        var polyline = L.geoJson(null, {
+            onEachFeature: function(feature, layer) {
+                var popupContent = "Nama: " + feature.properties.name + "<br>" +
+                    "Deskripsi: " + feature.properties.description + "<br>" +
+                    "Panjang: " + feature.properties.length_km.toFixed(2) + "<br>" +
+                    "Dibuat: " + feature.properties.created_at;
+                layer.on({
+                    click: function(e) {
+                        polyline.bindPopup(popupContent);
+                    },
+                    mouseover: function(e) {
+                        polyline.bindTooltip(feature.properties.kab_kota);
+                    },
+                });
+            },
+        });
+        $.getJSON("{{route('api.polylines')}}", function(data) {
+            polyline.addData(data);
+            map.addLayer(polyline);
+        });
+
+
+        /* GeoJSON Polygons */
+        var polygon = L.geoJson(null, {
+            onEachFeature: function(feature, layer) {
+                var popupContent = "Nama: " + feature.properties.name + "<br>" +
+                    "Deskripsi: " + feature.properties.description + "<br>" +
+                    "Panjang: " + feature.properties.area_km + "<br>" +
+                    "Dibuat: " + feature.properties.created_at;
+                layer.on({
+                    click: function(e) {
+                        polygon.bindPopup(popupContent);
+                    },
+                    mouseover: function(e) {
+                        polygon.bindTooltip(feature.properties.kab_kota);
+                    },
+                });
+            },
+        });
+        $.getJSON("{{route('api.polygons')}}", function(data) {
+            polygon.addData(data);
+            map.addLayer(polygon);
+        });
+
+        // control layer
+        var overlayMaps = {
+            "Point": point,
+            "Polyline": polyline,
+            "Polygon": polygon
+        };
+
+        var controlLayer = L.control.layers(null, overlayMaps, {
+            collapsed: false
+        });
+        controlLayer.addTo(map);
+
     </script>
 @endsection
