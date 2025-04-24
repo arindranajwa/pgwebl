@@ -14,10 +14,13 @@ class PolygonsModel extends Model
     public function geojson_polygons()
     {
         $polygons = $this
-            ->select(DB::raw('st_asgeojson(geom) as geom, name, description,
+            ->select(DB::raw('st_asgeojson(geom) as geom,
+            name,
+            description, image,
             st_area(geom) as area_m, st_area(geom)/1000000 as area_km,
             st_area(geom)/10000 as area_ha,
-            created_at, updated_at'))->get();
+            created_at,
+            updated_at'))->get();
 
         $geojson = [
             'type' => 'FeatureCollection',
@@ -36,6 +39,7 @@ class PolygonsModel extends Model
                     'area_ha' => $p->area_ha,
                     'created_at' => $p->created_at,
                     'updated_at' => $p->updated_at,
+                    'image' => $p->image,
                 ],
             ];
 
