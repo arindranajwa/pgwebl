@@ -91,7 +91,12 @@ class PolygonsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = [
+            'title' => 'Edit Poligon',
+            "id" => $id,
+        ];
+
+        return view('edit-polygon', $data);
     }
 
     /**
