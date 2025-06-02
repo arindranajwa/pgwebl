@@ -24,7 +24,7 @@
             <td>{{ $p->description }}</td>
             <td>
                 <img src="{{ asset('storage/images/' . $p->image) }}" alt=""
-                width="100" title="{{ $p->image }}">
+                width="200" title="{{ $p->image }}">
             </td>
             <td>{{ $p->created_at }}</td>
             <td>{{ $p->updated_at }}</td>
@@ -38,7 +38,7 @@
             <td>{{ $p->description }}</td>
             <td>
                 <img src="{{ asset('storage/images/' . $p->image) }}" alt=""
-                width="100" title="{{ $p->image }}">
+                width="200" title="{{ $p->image }}">
             </td>
             <td>{{ $p->created_at }}</td>
             <td>{{ $p->updated_at }}</td>
@@ -52,7 +52,7 @@
             <td>{{ $p->description }}</td>
             <td>
                 <img src="{{ asset('storage/images/' . $p->image) }}" alt=""
-                width="100" title="{{ $p->image }}">
+                width="200" title="{{ $p->image }}">
             </td>
             <td>{{ $p->created_at }}</td>
             <td>{{ $p->updated_at }}</td>
