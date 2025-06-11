@@ -21,6 +21,7 @@ class PointsModel extends Model
             points.updated_at,
             points.user_id,
             users.name as user_created'))
+            // menghubungkan tabel points dengan tabel users
             ->leftJoin('users', 'points.user_id', '=', 'users.id')
             ->get(); //mengambil data dari database
 

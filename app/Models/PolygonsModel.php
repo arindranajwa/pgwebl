@@ -20,7 +20,8 @@ class PolygonsModel extends Model
             st_area(polygon.geom) as area_m, st_area(polygon.geom)/1000000 as area_km,
             st_area(polygon.geom)/10000 as area_ha,
             polygon.created_at,
-            polygon.updated_at'))
+            polygon.updated_at,
+            users.name as user_created'))
             ->leftJoin('users', 'polygon.user_id', '=', 'users.id')
             ->get();
 
